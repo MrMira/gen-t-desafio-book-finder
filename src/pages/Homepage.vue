@@ -1,30 +1,31 @@
 <script setup>
   import { ref } from 'vue';
 
-  import Searcher from '../components/Searcher.vue';
+  import SearchBar from '../components/SearchBar.vue';
   import ListCard from '../components/ListCard.vue';
 
-  import GoogleBooksApi from '../services/GoogleBooksAPI.js';
+  import GoogleBooksApi from '../services/GoogleBooksApi.js';
   
   let dataSource = ref([]);
   let dataLoading = ref('');
   let textNoDataAvailable = ref('');
 
   function handleSearchRequest(text) {
-    
-    function success(dataRaw) {
+    function onSuccess(data) {
+        dataSource.value = [];
         textNoDataAvailable.value = '';
         dataLoading.value = 'loader';
-        dataSource.value = GoogleBooksApi.ParseBookItems(dataRaw);
+        dataSource.value = GoogleBooksApi.ParseBookItems(data);
         dataLoading.value = '';
       }
 
-      function error() {
+      function onError() {
+        dataLoading.value = '';
         textNoDataAvailable.value = 'Ocorreu um erro ao tentar fazer a busca pelos livros. Por favor, tente mais tarde...';
         dataSource.value = [];
       }
 
-      GoogleBooksApi.SearchForBooks(text, success, error);
+      GoogleBooksApi.SearchForBooks(text, onSuccess, onError);
   }
 </script>
 
@@ -32,12 +33,12 @@
   <div class="page-book">
     <div class="book-head">
       <h1 class="book-head__title">Buscador de Livros</h1>
-      <Searcher @search-requested="handleSearchRequest" />
+      <SearchBar @search-requested="handleSearchRequest" />
     </div>
     <div class="book-body">
       <ListCard :data-source="dataSource" />
       <div class="body-help">
-        <div :class="{dataLoading}"></div>
+        <div :class="dataLoading"></div>
         <p class="body-help__no-data">{{textNoDataAvailable}}</p>
       </div>
     </div>

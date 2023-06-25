@@ -11,26 +11,48 @@ let GoogleBooksApi = (function() {
             .catch(error => callbackError(error));
     }
 
-    function ParseBookItem(item) {
-        let v = item.volumeInfo;
+    function ParseDataPublicacao(element) {
+        let dado = element.publishedDate;
+        let formato = 'ausente';
 
-        let imageUrl = v.readingModes.image == false ? null : v.imageLinks.smallThumbnail;
-        let dataPublicacaoValor = v.publishedDate.length === 4 ? moment(v.publishedDate, 'YYYY') : moment(v.publishedDate, 'YYYY-MM-DD');
-        let dataPublicacaoTipo =  v.publishedDate.length === 4 ? 'ano' : 'dia-mes-ano';
+        if (dado === undefined) {
+            return {
+                valor: '',
+                formato: 'ausente'
+            };
+        }
+        
+        if (dado.length === 4) {
+            formato = 'YYYY';
+        } else if (dado.length === 7) {
+            formato = 'YYYY-MM';
+        } else if (dado.length === 10) {
+            formato = 'YYYY-MM-DD';
+        }
 
         return {
-          titulo: v.title,
-          autores: v.authors,
-          dataPublicacao: {
-            valor: dataPublicacaoValor,
-            tipo: dataPublicacaoTipo
-          },
-          imageUrl: imageUrl,
+            valor: moment(dado, formato),
+            formato: formato
         };
     }
 
-    function ParseBookItems(dataRaw) {
-        return dataRaw.items.map(item => ParseBookItem(item));
+    function ParseBookItem(item) {
+        let v = item.volumeInfo;
+        
+        let autores = v.authors !== undefined ? v.authors : ['Autores ausente'];
+        let imageUrl = v.imageLinks !== undefined ? v.imageLinks.thumbnail : undefined;
+
+        return {
+          titulo: v.title,
+          autores: autores,
+          dataPublicacao: ParseDataPublicacao(v),
+          imageUrl: imageUrl,
+          link: v.previewLink
+        };
+    }
+
+    function ParseBookItems(data) {
+        return data.items.map(item => ParseBookItem(item));
     }
 
     return {

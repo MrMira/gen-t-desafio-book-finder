@@ -1,7 +1,18 @@
-# Vue 3 + Vite
+# Desafio Book Finder da Gen-t
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Aplicação front-end montada utilizando-se do framework Vue 3 pelo Vite e acesso a API Google Books para fazer a listagem de livros a partir do fornecimento de um termo de busca.
 
-## Recommended IDE Setup
+## Configuração e Instalação
+Basta fazer o clone do projeto no computador e ter instalado o Node e o yarn. Entrar dento da pasta e rodar o comando `yarn` para instalar as dependências e por fim `yarn dev` para rodar a aplicação em ambiente de desenvolvimento.
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Funcionalidades da Aplicação
+1. Buscar por livros a partir de um termo de pesquisa.
+2. Exibição dos seguintes campos dos livros (título, autores, data de publicação, foto da capa do livro, link de preview do livro).
+3. Caso não seja informado um termo de busca, o sistema irá mostrar uma mensagem.
+4. Enquanto a busca está sendo feito, é exibido uma animação de carregamento na tela.
+5. Caso aconteça algum erro ao tentar fazer a busca na API o sistema irá mostrar uma mensagem.
+6. Caso o sistema não encontre nenhum livro, será mmostrado uma mensagem.
+7. O site foi adaptado para mobile através da abordagem 'mobile-first', ou seja, a folha de estilo padrão é feita para mobile, e é utilizado 'media queries' para adaptar o layout para tablets e desktops.
+
+## Próximos Passos
+- [ ] Acrescentar um botão ao final da listagem dos livros para que a pessoa consiga ver a próxima página da listagem (não olhei essa parte).

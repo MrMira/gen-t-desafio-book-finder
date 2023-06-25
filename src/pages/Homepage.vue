@@ -14,18 +14,19 @@ let isLoading = ref(false);
 let textProblem = ref('');
 
 let handleSearchRequested = function (text) {
+  dataSource.value = [];
+
   if (text === '') {
-    textProblem.value = 'Antes de clicar no botão para iniciar a busca, informe um texto para pesquisa.'
+    textProblem.value = 'Antes de clicar no botão de busca, informe um termo para pesquisa.'
     return;
   }
 
   let onSuccess = function (data) {
     if (data.totalItems === 0) {
-      textProblem.value = 'Não foi encontrado nenhum resultado para o termo fornecido para pesquisa';
+      textProblem.value = 'Não foi encontrado nenhum resultado para o termo de pesquisa fornecido.';
       return;
     }
 
-    dataSource.value = [];
     textProblem.value = '';
     isLoading.value = true;
 
@@ -41,9 +42,8 @@ let handleSearchRequested = function (text) {
   }
 
   let onError = function () {
-    isLoading.value = '';
+    isLoading.value = false;
     textProblem.value = 'Ocorreu um erro ao tentar fazer a busca pelos livros. Por favor, tente mais tarde...';
-    dataSource.value = [];
   }
 
   GoogleBooksApi.SearchForBooks(text, onSuccess, onError);
@@ -53,7 +53,7 @@ let handleSearchRequested = function (text) {
 <template>
   <div class="page-book">
     <div class="book-head">
-      <h1 class="book-head__title">Buscador de Livros</h1>
+      <h1 class="book-head__title">Book Finder</h1>
       <SearchBar @search-requested="handleSearchRequested" />
     </div>
     
@@ -79,7 +79,7 @@ let handleSearchRequested = function (text) {
 }
 
 .body-help {
-  margin-top: 40px;
+  margin-top: 10px;
   text-align: center;
 }
 

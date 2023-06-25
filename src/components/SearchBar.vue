@@ -22,14 +22,26 @@ onMounted(() =>
 </template>
 
 <style scoped>
+.search-bar {
+  padding: 10px 5px;
+  margin: 20px 30px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .search-bar__input {
-  font-size: 12pt;
+  display: block;
+  width: 100%;
 
   padding: 5px;
-  margin-right: 15px;
-  width: 350px;
-
+  margin-right: 0;
+  margin-bottom: 10px;
+  
+  font-size: 12pt;
   color: #555;
+
   border: 2px solid #ccc;
   border-radius: 5px;
 
@@ -37,6 +49,9 @@ onMounted(() =>
 }
 
 .search-bar__button {
+  display: block;
+  width: 100%;
+
   cursor: pointer;
 
   padding: 8px;
@@ -64,5 +79,27 @@ onMounted(() =>
 
 ::placeholder {
   color: #ccc;;
+}
+
+@media (min-width: 1024px) {
+  .search-bar {
+    display: initial;
+
+    padding: 0;
+    margin: 0;
+  }
+  
+  .search-bar__input {
+    display: initial;
+    width: initial;
+
+    width: 350px;
+    margin-right: 15px;
+  }
+
+  .search-bar__button {
+    display: initial;
+    width: initial;
+  }
 }
 </style>

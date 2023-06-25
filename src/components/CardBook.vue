@@ -26,7 +26,7 @@ function FormatDate(data) {
     return valor.format('DD/MM/YYYY');
   }
 
-  return 'Data de publicação ausente.';
+  return valor;
 }
 
 let autoresFormatted = computed(() => props.autores.join(', '));
@@ -52,11 +52,12 @@ let imageUrlFormatted = computed(() => props.imageUrl == null ? noImageUrl : pro
 <style scoped>
 .card-book {
   display: flex;
-  width: 500px;
+  flex-direction: column;
 
-  padding: 10px 5px;
+  padding: 20px 15px;
   margin: 20px 30px;
 
+  border-radius: 5px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
 
@@ -64,7 +65,8 @@ let imageUrlFormatted = computed(() => props.imageUrl == null ? noImageUrl : pro
   height: 185px;
   width: 128px;
 
-  margin: 0px 15px;
+  margin: 0px auto;
+  margin-bottom: 15px;
 }
 
 .card-image img {
@@ -86,5 +88,27 @@ let imageUrlFormatted = computed(() => props.imageUrl == null ? noImageUrl : pro
 
 .card-content__author {
   font-style: italic;
+}
+
+@media (min-width: 728px) {
+  .card-book {
+    padding: 15px 5px;
+    flex-direction: initial;
+  }
+
+  .card-image {
+    margin: 0px 15px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-book {
+    width: 500px;
+    flex-direction: initial;
+  }
+
+  .card-image {
+    margin: 0px 15px;
+  }
 }
 </style>

@@ -14,11 +14,13 @@ const props = defineProps([
 </template>
 
 <style scoped>
-.list-card {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-content: center;
-  flex-direction: row;
+@media (min-width: 1024px) {
+  .list-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+  }
 }
 </style>

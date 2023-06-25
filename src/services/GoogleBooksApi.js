@@ -17,7 +17,7 @@ let GoogleBooksApi = (function () {
 
     if (dado === undefined) {
       return {
-        valor: '',
+        valor: 'Data de publicação ausente',
         formato: 'ausente'
       };
     }
@@ -39,7 +39,7 @@ let GoogleBooksApi = (function () {
   function ParseBookItem(item) {
     let v = item.volumeInfo;
 
-    let autores = v.authors !== undefined ? v.authors : ['Autores ausente'];
+    let autores = v.authors !== undefined ? v.authors : ['Nome dos autores ausente'];
     let imageUrl = v.imageLinks !== undefined ? v.imageLinks.thumbnail : undefined;
 
     return {

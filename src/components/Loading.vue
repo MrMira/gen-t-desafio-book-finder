@@ -5,7 +5,7 @@ const props = defineProps([
   'state'
 ]);
 
-let className = computed(() => props.state === true ? 'loader' : '');
+let className = computed(() => props.state === true ? 'loading' : '');
 
 </script>
 

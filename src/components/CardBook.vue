@@ -15,7 +15,7 @@ function FormatDate(data) {
   let valor = data.valor;
 
   if (data.formato === 'YYYY') {
-    return valor.format('YYYY') ;
+    return valor.format('YYYY');
   }
 
   if (data.formato === 'YYYY-MM') {
@@ -23,7 +23,7 @@ function FormatDate(data) {
   }
 
   if (data.formato === 'YYYY-MM-DD') {
-    return valor.format('DD/MM/YYYY') ;
+    return valor.format('DD/MM/YYYY');
   }
 
   return 'Data de publicação ausente.';
@@ -38,7 +38,7 @@ let imageUrlFormatted = computed(() => props.imageUrl == null ? noImageUrl : pro
 <template>
   <div class="card-book">
     <div class="card-image">
-      <img :src="imageUrlFormatted" width="180" />
+      <img :src="imageUrlFormatted" />
     </div>
     <div class="card-content">
       <p class="card-content__title">{{ titulo }}</p>
@@ -50,31 +50,41 @@ let imageUrlFormatted = computed(() => props.imageUrl == null ? noImageUrl : pro
 </template>
 
 <style scoped>
-  .card-book {
-    display: flex;
-    padding: 10px 5px;
-    margin: 30px 50px;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-  }
+.card-book {
+  display: flex;
+  width: 500px;
 
-  .card-image {
-    margin: 0px 15px;
-  }
+  padding: 10px 5px;
+  margin: 20px 30px;
 
-  .card-content p {
-    margin-bottom: 10px;
-  }
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
 
-  .card-content a {
-    margin-bottom: 10px;
-    text-decoration: none;
-  }
+.card-image {
+  height: 185px;
+  width: 128px;
 
-  .card-content__title {
-    font-weight: bold;
-  }
+  margin: 0px 15px;
+}
 
-  .card-content__author {
-    font-style: italic;
-  }
+.card-image img {
+  max-height: 100%;
+}
+
+.card-content p {
+  margin-bottom: 10px;
+}
+
+.card-content a {
+  margin-bottom: 10px;
+  text-decoration: none;
+}
+
+.card-content__title {
+  font-weight: bold;
+}
+
+.card-content__author {
+  font-style: italic;
+}
 </style>

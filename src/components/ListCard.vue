@@ -8,10 +8,17 @@ const props = defineProps([
 </script>
 
 <template>
-  <div v-for="item in dataSource">
-      <CardBook :="item" />
+  <div class="list-card" >
+      <CardBook v-for="item in dataSource" :="item" />
   </div>
 </template>
 
 <style scoped>
+.list-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+}
 </style>

@@ -1,14 +1,24 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
-let searchText = ref('');
+let refSearchInput = ref(null);
+let textSearch = ref('');
+
+const props = defineProps([
+  'handlerToFocus'
+]);
+
+onMounted(() => 
+  refSearchInput.value.focus()
+);
+
 </script>
 
 <template>
-  <div class="search-bar">
-    <input class="search-bar__input" type="text" v-model="searchText" />
-    <button class="search-bar__button" @click="$emit('searchRequested', searchText)">Buscar por Livros</button>
-  </div>
+  <form class="search-bar">
+    <input class="search-bar__input" type="text" placeholder="Digite o nome de um livro, autor ou assunto" v-model="textSearch" ref="refSearchInput" />
+    <button class="search-bar__button" @click.prevent="$emit('searchRequested', textSearch)">Buscar por Livros</button>
+  </form>
 </template>
 
 <style scoped>
@@ -17,18 +27,18 @@ let searchText = ref('');
 
   padding: 5px;
   margin-right: 15px;
-  width: 250px;
+  width: 350px;
 
   color: #555;
   border: 2px solid #ccc;
   border-radius: 5px;
-  
+
   outline: none;
 }
 
 .search-bar__button {
   cursor: pointer;
-  
+
   padding: 8px;
   font-weight: bold;
 
@@ -50,5 +60,9 @@ let searchText = ref('');
   background-color: #F3F4F6;
   text-decoration: none;
   transition-duration: 0.1s;
+}
+
+::placeholder {
+  color: #ccc;;
 }
 </style>

@@ -1,4 +1,5 @@
 <script setup>
+import CardBook from '../components/CardBook.vue';
 
 const props = defineProps([
   'dataSource'
@@ -7,8 +8,8 @@ const props = defineProps([
 </script>
 
 <template>
-  <div v-for="t in dataSource">
-      {{t.titulo}}
+  <div v-for="item in dataSource">
+      <CardBook :="item" />
   </div>
 </template>
 

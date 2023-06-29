@@ -11,8 +11,9 @@ Basta fazer o clone do projeto no computador e ter instalado o Node e o yarn. En
 3. Caso não seja informado um termo de busca, o sistema irá mostrar uma mensagem.
 4. Enquanto a busca está sendo feito, é exibido uma animação de carregamento na tela.
 5. Caso aconteça algum erro ao tentar fazer a busca na API o sistema irá mostrar uma mensagem.
-6. Caso o sistema não encontre nenhum livro, será mmostrado uma mensagem.
-7. O site foi adaptado para mobile através da abordagem 'mobile-first', ou seja, a folha de estilo padrão é feita para mobile, e é utilizado 'media queries' para adaptar o layout para tablets e desktops.
+6. Caso o sistema não encontre nenhum livro, será mostrado uma mensagem.
+7. Caso a foto de capa do livro não esteja disponível, será mostrado uma imagem 'placeholder' no lugar.
+8. O site foi adaptado para mobile através da abordagem 'mobile-first', ou seja, a folha de estilo padrão é feita para mobile, e é utilizado 'media queries' para adaptar o layout para tablets e desktops.
 
 ## Próximos Passos
 - [ ] Acrescentar um botão ao final da listagem dos livros para que a pessoa consiga ver a próxima página da listagem (não olhei essa parte).
